@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Resume Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.ts"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .resume-output {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Static Resume Generator</h1>
+        <form id="resumeForm">
+            <!-- Personal Information -->
+            <h2>Personal Information</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <!-- Experience -->
+            <h2>Experience</h2>
+            <label for="experience">Experience:</label>
+            <textarea id="experience" name="experience" rows="4" placeholder="Describe your experience" required></textarea>
+
+            <!-- Skills -->
+            <h2>Skills</h2>
+            <label for="skills">Skills:</label>
+            <textarea id="skills" name="skills" rows="4" placeholder="List your skills" required></textarea>
+
+            <!-- Generate Button -->
+            <button type="button" onclick="generateResume()">Generate</button>
+        </form>
+
+        <!-- Resume Output -->
+        <div id="resumeOutput" class="resume-output" style="display: none;"></div>
+    </div>
+
+    <script>
+        function generateResume() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const experience = document.getElementById('experience').value;
+            const skills = document.getElementById('skills').value;
+
+            // Generate Resume HTML
+            const resumeHTML = `
+                <h2>${name}</h2>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <h3>Experience</h3>
+                <p>${experience.replace(/\n/g, '<br>')}</p>
+                <h3>Skills</h3>
+                <p>${skills.replace(/\n/g, '<br>')}</p>
+            `;
+
+            // Display the Resume Output
+            const resumeOutput = document.getElementById('resumeOutput');
+            resumeOutput.innerHTML = resumeHTML;
+            resumeOutput.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
